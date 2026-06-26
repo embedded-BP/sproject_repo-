@@ -1,0 +1,59 @@
+Git Cheat Sheet for Firmware Development
+
+1.  Check current directory Command: pwd Example: pwd
+
+2.  Change directory Command: cd D:/Projects/Firmware Example: cd
+    MyProject
+
+3.  List files Command: ls Example: ls -la
+
+4.  Clone repository Command: git clone https://github.com/user/repo.git
+
+5.  Check repository status Command: git status
+
+6.  Show local branches Command: git branch
+
+7.  Show all branches Command: git branch -a
+
+8.  Show remote branches Command: git branch -r
+
+9.  Switch branch Command: git switch develop Example: git switch main
+
+10. Create local branch from remote Command: git switch -c develop
+    origin/develop
+
+11. Fetch latest remote info Command: git fetch –all
+
+12. Stage changes Command: git add .
+
+13. Commit changes Command: git commit -m “Fixed ADC bug”
+
+14. Push current branch Command: git push
+
+15. Push specific branch Command: git push origin develop
+
+16. Push local main to remote develop Command: git push origin
+    main:develop
+
+17. Pull changes Command: git pull origin main
+
+18. View history Command: git log –oneline
+
+19. Create annotated tag Command: git tag -a v1.0.0 -m “Firmware Release
+    v1.0.0”
+
+20. List tags Command: git tag
+
+21. Push one tag Command: git push origin v1.0.0
+
+22. Push all tags Command: git push origin –tags
+
+23. Show tag details Command: git show v1.0.0
+
+24. Checkout tag Command: git checkout v1.0.0
+
+Daily Workflow: git status git add . git commit -m “Your message” git
+push origin develop
+
+Branch Workflow: main -> Stable releases develop -> Active development
+feature/* -> New features Tag releases on main: v1.0.0, v1.0.1, v1.1.0
