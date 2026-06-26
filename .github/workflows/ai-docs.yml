@@ -1,0 +1,41 @@
+name: AI Documentation
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install openai
+          pip install GitPython
+
+      - name: Run AI documentation generator
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python Scripts/ai_documentation.py
+
+      - name: Commit updated documentation
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add Docs/
+
+          git diff --cached --quiet || git commit -m "Automatic documentation update"
+
+          git push
