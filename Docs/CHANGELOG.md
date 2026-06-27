@@ -49,3 +49,4 @@ Versions follow [Semantic Versioning](https://semver.org/).
   - Three graph canvases: 250 × 250 px with 25 px grid lines, white background
   - Bottom status bar: raw serial data label, device status label
   - Basic menu bar stub (Connection menu only)
+Automatic update from GitHub Actions
