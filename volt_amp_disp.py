@@ -1,4 +1,4 @@
-
+# File modifie by:
 import tkinter as tk
 from tkinter import ttk
 
@@ -7,14 +7,89 @@ root.title("STM32 USB Monitor")
 root.geometry("1250x760")
 
 # Menu
-menubar=tk.Menu(root)
-for name in ("File","Connection","View","Settings","Tools","Help"):
-    m=tk.Menu(menubar,tearoff=0)
-    if name=="Connection":
-        m.add_command(label="Refresh Ports")
-        m.add_command(label="Connect")
-        m.add_command(label="Disconnect")
-    menubar.add_cascade(label=name,menu=m)
+menubar = tk.Menu(root)
+
+# File menu
+file_menu = tk.Menu(menubar, tearoff=0)
+file_menu.add_command(label="New Session",        accelerator="Ctrl+N")
+file_menu.add_command(label="Open Log...",         accelerator="Ctrl+O")
+file_menu.add_separator()
+file_menu.add_command(label="Save Log...",         accelerator="Ctrl+S")
+file_menu.add_command(label="Export as CSV...")
+file_menu.add_command(label="Export as PDF...")
+file_menu.add_separator()
+file_menu.add_command(label="Print...",            accelerator="Ctrl+P")
+file_menu.add_separator()
+file_menu.add_command(label="Exit",                accelerator="Alt+F4")
+menubar.add_cascade(label="File", menu=file_menu)
+
+# Connection menu
+conn_menu = tk.Menu(menubar, tearoff=0)
+conn_menu.add_command(label="Refresh Ports",       accelerator="F5")
+conn_menu.add_separator()
+conn_menu.add_command(label="Connect",             accelerator="F7")
+conn_menu.add_command(label="Disconnect",          accelerator="F8")
+conn_menu.add_separator()
+conn_menu.add_command(label="Port Settings...")
+conn_menu.add_command(label="Auto-Connect on Startup")
+menubar.add_cascade(label="Connection", menu=conn_menu)
+
+# View menu
+view_menu = tk.Menu(menubar, tearoff=0)
+view_menu.add_checkbutton(label="Show Toolbar")
+view_menu.add_checkbutton(label="Show Status Bar")
+view_menu.add_checkbutton(label="Show Raw Data Panel")
+view_menu.add_separator()
+view_menu.add_checkbutton(label="Show Voltage Graph")
+view_menu.add_checkbutton(label="Show Current Graph")
+view_menu.add_checkbutton(label="Show Power Graph")
+view_menu.add_separator()
+zoom_menu = tk.Menu(view_menu, tearoff=0)
+zoom_menu.add_command(label="Zoom In",             accelerator="Ctrl++")
+zoom_menu.add_command(label="Zoom Out",            accelerator="Ctrl+-")
+zoom_menu.add_command(label="Reset Zoom",          accelerator="Ctrl+0")
+view_menu.add_cascade(label="Zoom", menu=zoom_menu)
+view_menu.add_separator()
+view_menu.add_command(label="Light Theme")
+view_menu.add_command(label="Dark Theme")
+menubar.add_cascade(label="View", menu=view_menu)
+
+# Settings menu
+settings_menu = tk.Menu(menubar, tearoff=0)
+settings_menu.add_command(label="COM Port Settings...")
+settings_menu.add_command(label="Baud Rate Settings...")
+settings_menu.add_separator()
+settings_menu.add_command(label="Display Settings...")
+settings_menu.add_command(label="Graph Settings...")
+settings_menu.add_separator()
+settings_menu.add_command(label="Calibration Settings...")
+settings_menu.add_separator()
+settings_menu.add_command(label="Preferences...",  accelerator="Ctrl+,")
+menubar.add_cascade(label="Settings", menu=settings_menu)
+
+# Tools menu
+tools_menu = tk.Menu(menubar, tearoff=0)
+tools_menu.add_command(label="Data Logger")
+tools_menu.add_command(label="Serial Monitor...")
+tools_menu.add_command(label="Statistics & Analysis...")
+tools_menu.add_separator()
+tools_menu.add_command(label="Clear All Data",     accelerator="Ctrl+Del")
+tools_menu.add_command(label="Reset Graphs")
+tools_menu.add_separator()
+tools_menu.add_command(label="Run Diagnostics...")
+menubar.add_cascade(label="Tools", menu=tools_menu)
+
+# Help menu
+help_menu = tk.Menu(menubar, tearoff=0)
+help_menu.add_command(label="Documentation",       accelerator="F1")
+help_menu.add_command(label="Keyboard Shortcuts...")
+help_menu.add_separator()
+help_menu.add_command(label="Check for Updates...")
+help_menu.add_command(label="Report a Bug...")
+help_menu.add_separator()
+help_menu.add_command(label="About STM32 USB Monitor")
+menubar.add_cascade(label="Help", menu=help_menu)
+
 root.config(menu=menubar)
 
 top=ttk.Frame(root,padding=8)
