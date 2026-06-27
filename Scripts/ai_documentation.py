@@ -1,11 +1,16 @@
-#print("AI Documentation Generator Started")
 from pathlib import Path
 
 print("AI Documentation Generator Started")
 
-docs = Path("Docs")
+file = Path("Docs/CHANGELOG.md")
 
-for file in docs.glob("*.md"):
-    print(file.name)
+# Create file if it doesn't exist
+file.parent.mkdir(exist_ok=True)
 
-print("Completed")
+if not file.exists():
+    file.write_text("# Changelog\n\n")
+
+with open(file, "a", encoding="utf-8") as f:
+    f.write("Automatic update from GitHub Actions\n")
+
+print("CHANGELOG updated")
